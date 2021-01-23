@@ -1,6 +1,6 @@
 from flask import Flask, request, Response, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timezone
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -15,14 +15,14 @@ class Reading(db.Model):
     sensor_type = db.Column(db.String(255), nullable=False, default='temperature')
     value = db.Column(db.Integer, nullable=False)
     alert = db.Column(db.Boolean)
-    time_stamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    time_stamp = db.Column(db.DateTime, nullable=False, default=datetime.now().astimezone(timezone.utc))
 
     def json(self):
         return {
             "sensor_id": self.sensor_id,
             "sensor_type": self.sensor_type,
             "value": self.value,
-            "time_stamp": self.time_stamp
+            "time_stamp": self.time_stamp.isoformat()
         }
 
 @app.route('/sensor-readings', methods=['POST'])
@@ -33,7 +33,7 @@ def sensor_readings():
         sensor_type = reading['type'],
         value = reading['value'],
         alert = reading['alert'],
-        time_stamp = reading['time_stamp']
+        time_stamp = datetime.fromisoformat(reading['time_stamp']),
     )
 
     db.session.add(reading_record)
