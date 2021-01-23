@@ -18,23 +18,27 @@ git clone git@github.com:hussain-alhassan/sensor-readings.git
 ```sh
 cd sensor-readings
 ```
-3- Install the dependencies.
+3- Set up virtual environment (this command is for Windows)
+```sh
+python -m venv venv && venv\Scripts\activate
+```
+4- Install the dependencies.
 ```sh
 python -m pip install -r requirements.txt
 ```
-4- Migrate the database
+5- Migrate the database
 ```sh
 flask db upgrade
 ```
-5- Run the server to test the project on the browser.
+6- Run the server to test the project on the browser.
 ```sh
 flask run
 ```
-6- Open a new terminal window and navigate to the project root directrory again 'sensor-readings'. Then run this command to allow the sensor to send data to the server.
+7- Open a new terminal window and navigate to the project root directrory again 'sensor-readings'. Then run this command to allow the sensor to send data to the server.
 ```sh
 python sensor.py
 ```
-7- Click this link http://127.0.0.1:5000 (your url might be slighly different. Note: localhost might not work).
+8- Click this link http://127.0.0.1:5000 (your url might be slighly different. Note: localhost might not work).
 
 
 Written by Hussain Alhassan. Feel free to use it :)
