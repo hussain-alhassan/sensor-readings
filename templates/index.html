@@ -3,7 +3,7 @@
 <head>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='style.css') }}">
     
-    <script src="{{ url_for('static', filename='app.js') }}" type="module"></script>
+    <script src="{{ url_for('static', filename='app.js') }}" type="application/javascript"></script>
     <link rel="shortcut icon" href="#">
 </head>
 <body>
@@ -11,11 +11,11 @@
 <h2>HTML Table</h2>
 
 <table id="myTable">
-    <tr id="table-header">
+    <tr>
         <th>Sensor ID</th>
         <th>Sensor Type</th>
         <th>Value</th>
-        <th>Time</th>
+        <th>Time (UTC)</th>
     </tr>
 </table>
 </body>

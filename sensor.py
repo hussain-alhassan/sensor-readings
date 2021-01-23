@@ -20,6 +20,10 @@ while True:
     }
 
     print(f"sending reading: {reading}")
-    requests.request("post", "http://127.0.0.1:5000/sensor-readings", json=reading)
+
+    try:
+        requests.request("post", "http://127.0.0.1:5000/sensor-readings", json=reading)
+    except requests.ConnectionError:
+        pass
 
     time.sleep(1)
